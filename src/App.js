@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import './App.css'
 
 function Todo({ todo, index, completeTodo }) {
-  return <div  
-  style={{textDecoration: todo.isCompleted ? 'line-through' : ''}}
-  className="todo"> 
-  {todo.text} 
-  <div>
-    <button onClick={() => completeTodo(index)}> Complete </button>
-  </div>
+  return <div
+    style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}
+    className="todo">
+    {todo.text}
+    <div>
+      <button onClick={() => completeTodo(index)}> Complete </button>
+    </div>
   </div>
 }
 
-function TodoForm({addTodo}) {
+function TodoForm({ addTodo }) {
   const [value, setValue] = useState('');
 
   const handleSubmit = e => {
@@ -58,10 +58,11 @@ function App() {
   };
 
   const completeTodo = index => {
-    console.log("index in Completed", index)
+    
     const newTodos = [...todos];
-    newTodos[index].isCompleted = true
+    newTodos[index].isCompleted = !newTodos[index].isCompleted
     setTodos(newTodos);
+    console.log("todos in Completed", todos)
   };
 
   return (
