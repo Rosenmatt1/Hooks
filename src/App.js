@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css'
 
-function Todo({ todo, index }) {
+function Todo({ todo, index, completeTodo }) {
   return <div  
   style={{textDecoration: todo.isCompleted ? 'line-through' : ''}}
   className="todo"> 
@@ -23,7 +23,7 @@ function TodoForm({addTodo}) {
   }
 
   return (
-    <form onSumbit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <input
         type="text"
         className="input"
@@ -57,6 +57,13 @@ function App() {
     setTodos(newTodos);
   };
 
+  const completeTodo = index => {
+    console.log("index in Completed", index)
+    const newTodos = [...todos];
+    newTodos[index].isCompleted = true
+    setTodos(newTodos);
+  };
+
   return (
     <div className="app">
       <div className="todo-list">
@@ -65,6 +72,7 @@ function App() {
             key={index}
             index={index}
             todo={todo}
+            completeTodo={completeTodo}
           />
         ))}
         <TodoForm
