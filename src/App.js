@@ -64,15 +64,33 @@ function App() {
     const newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted
     setTodos(newTodos);
-    console.log("todos in Completed", newTodos[index].isCompleted)
+    // console.log("todos in Completed", newTodos[index].isCompleted)
   };
 
+  // const deleteTodo = index => {
+  //   const todosWithRemoved = todos.filter(todo => {
+  //     if (todo.isCompleted === false) {
+  //       return todo
+  //     }
+  //     return !todos
+  //   })
+  //   setTodos(todosWithRemoved)
+  // }
+
+   // const deleteTodo = index => {
+  //   const todosWithRemoved = todos.filter(todo => {
+  //     if (todo.isCompleted === false) {
+  //       return todo
+  //     }
+  //   })
+  //   setTodos(todosWithRemoved)
+  // }
+
   const deleteTodo = index => {
-    const todosWithRemoved = todos.filter(todo => {
-      if (todo.isCompleted === false) {
-        return todo
-      }
-    })
+    // console.log("before", todos)
+    const todosWithRemoved = [...todos]
+    todosWithRemoved.splice(index, 1)
+    // console.log("after", todosWithRemoved)
     setTodos(todosWithRemoved)
   }
 
