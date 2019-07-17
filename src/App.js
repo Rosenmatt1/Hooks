@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import './App.css'
 
-function Todo({ todo, index, completeTodo }) {
-  return <div
-    style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}
-    className="todo">
-    {todo.text}
-    <div>
-      <button onClick={() => completeTodo(index)}> Complete </button>
+function Todo({ todo, index, completeTodo, deleteTodo }) {
+  return (
+    <div
+      style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}
+      className="todo">
+      {todo.text}
+      <div>
+        <button onClick={() => completeTodo(index)}> Complete </button>
+        <button onClick={() => deleteTodo(index)}> Delete</button>
+      </div>
     </div>
-  </div>
+  )
 }
 
 function TodoForm({ addTodo }) {
@@ -58,12 +61,20 @@ function App() {
   };
 
   const completeTodo = index => {
-    
     const newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted
     setTodos(newTodos);
-    console.log("todos in Completed", todos)
+    console.log("todos in Completed", newTodos[index].isCompleted)
   };
+
+  const deleteTodo = index => {
+    const todosWithRemoved = todos.filter(todo => {
+      if (todo.isCompleted === false) {
+        return todo
+      }
+    })
+    setTodos(todosWithRemoved)
+  }
 
   return (
     <div className="app">
@@ -74,6 +85,7 @@ function App() {
             index={index}
             todo={todo}
             completeTodo={completeTodo}
+            deleteTodo={deleteTodo}
           />
         ))}
         <TodoForm
