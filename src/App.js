@@ -2,31 +2,28 @@ import React, { useState } from 'react';
 import './App.css'
 
 function Todo({ todo, index }) {
-  return (
-    <div className="todo">
-      {todo.text}
-    </div>
-  )
+  return <div className="todo"> {todo.text} </div>
 }
 
 function TodoForm({addTodo}) {
   const [value, setValue] = useState('');
-  
+
   const handleSubmit = e => {
     e.preventDefault();
-    if(!value) return;
+    if (!value) return;
     addTodo(value);
     setValue('');
   }
 
-  return  (
+  return (
     <form onSumbit={handleSubmit}>
-      <input 
-      type="text" 
-      className="input" 
-      value={value} 
-      placeholder="addTodo"
-      onChange={e => setValue(e.target.value)} />
+      <input
+        type="text"
+        className="input"
+        value={value}
+        placeholder="addTodo"
+        onChange={e => setValue(e.target.value)}
+      />
     </form>
   )
 }
@@ -50,11 +47,11 @@ function App() {
 
   const addTodo = text => {
     const newTodos = [...todos, { text }];
-    setTodos(newTodos)
-  }
+    setTodos(newTodos);
+  };
 
   return (
-    <div className="App">
+    <div className="app">
       <div className="todo-list">
         {todos.map((todo, index) => (
           <Todo
