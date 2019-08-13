@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './App.css'
 
 function Todo({ todo, index, completeTodo, deleteTodo }) {
+  console.log(todo)
+  console.log(index)
   return (
     <div
       style={{ textDecoration: todo.isCompleted ? 'line-through' : '' }}
@@ -38,7 +40,6 @@ function TodoForm({ addTodo }) {
   )
 }
 
-
 function App() {
   const [todos, setTodos] = useState([
     {
@@ -53,19 +54,19 @@ function App() {
       text: "Build cool todo app",
       isCompleted: false,
     }
-  ]);
+  ])
 
   const addTodo = text => {
     const newTodos = [...todos, { text }];
     setTodos(newTodos);
-  };
+  }
 
   const completeTodo = index => {
     const newTodos = [...todos];
     newTodos[index].isCompleted = !newTodos[index].isCompleted
     setTodos(newTodos);
     // console.log("todos in Completed", newTodos[index].isCompleted)
-  };
+  }
 
   // const deleteTodo = index => {
   //   const todosWithRemoved = todos.filter(todo => {
